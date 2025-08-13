@@ -1,10 +1,15 @@
 {
   "name": "com.uroc.webgl-template",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "displayName": "UROC WebGL Template",
   "description": "WebGL template for our games",
   "unity": "6.0",
   "author": {
-    "name": "UROC Studios"
-  }
+    "name": "UROC Studios",
+    "email": "dev@uroc.com"
+  },
+  "keywords": [
+    "Template",
+    "WebGL"
+  ]
 }
