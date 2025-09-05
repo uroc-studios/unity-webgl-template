@@ -5,25 +5,26 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-    <link rel="shortcut icon" href="https://ik.imagekit.io/bmp6bnlpn/uroc/uroc-logo-primary.svg?1755010956462">
+    <link rel="shortcut icon" href="https://ik.imagekit.io/bmp6bnlpn/uroc/uroc-logo-primary.svg">
     #if SHOW_DIAGNOSTICS
     <link rel="stylesheet" href="<<<TemplateData/diagnostics.css>>>">
     <script src="<<<TemplateData/diagnostics.js>>>"></script>
     #endif
     <script src="https://cdn.jsdelivr.net/npm/lil-gui@0.20.0/dist/lil-gui.umd.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/lil-gui@0.20.0/dist/lil-gui.min.css" rel="stylesheet">
-    <script src="TemplateData/shell.min.js?v=1755010956462"></script>
-    <link rel="stylesheet" href="TemplateData/shell.min.css?v=1755010956462">
-    <script type="module" src="TemplateData/force-tool.js?v=1755010956462" defer=""></script>
+    <script src="https://ik.imagekit.io/bmp6bnlpn/scripts/unity-game-shell/shell.min.js?updatedAt=1757074543426"></script>
+    <link rel="stylesheet" href="https://ik.imagekit.io/bmp6bnlpn/scripts/unity-game-shell/shell.min.css?updatedAt=1757074543426">
+    <script type="module" src="https://ik.imagekit.io/bmp6bnlpn/scripts/unity-game-shell/force-tool.js?updatedAt=1757074543426" defer=""></script>
   </head>
   <body>
     <div class="unity-desktop" id="unity-container">
       <canvas id="unity-canvas" width="{{{ WIDTH }}}" height="{{{ HEIGHT }}}" tabindex="-1"></canvas>
       <div id="splash">
         <div class="inner">
-          <video ontimeupdate="GameShell.on_splash_video_progress(this)" onended="GameShell.on_splash_video_end()" src="https://ik.imagekit.io/bmp6bnlpn/uroc/splash.mp4?updatedAt=1755010956462" playsinline webkit-playsinline autoplay muted style="position:absolute;border-radius:50%;width:100%;height:100%;z-index:-1"></video>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" style="position:relative;right:-2px;top:-5px;transform:rotate(-90deg)">
-            <circle stroke-width="6" cx="250" cy="250" r="245.5" stroke-dasharray="1542.5219929125885" stroke-dashoffset="1542.5219929125885" fill="transparent" stroke="url(#gradient)"></circle>
+          <video ontimeupdate="GameShell.on_splash_video_progress(this)" onended="GameShell.on_splash_video_end()" src="https://ik.imagekit.io/bmp6bnlpn/uroc/splash.mp4" playsinline webkit-playsinline autoplay muted style="position:absolute;border-radius:50%;width:100%;height:100%;z-index:-1"></video>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet" style="position:relative;right:-2px;top:-5px">
+            <circle stroke-width="6" cx="250" cy="250" r="245.5" stroke-dasharray="1542.5219929125885" stroke-dashoffset="1542.5219929125885" fill="transparent" stroke="url(#gradient)" style="transform: rotate(-90deg);transform-origin:center"></circle>
+            <text x="250" y="460" font-family="Arial, sans-serif" font-size="20" fill="white" text-anchor="middle" alignment-baseline="middle"></text>
             <defs>
               <lineargradient id="gradient" x1="0" x2="1" y1="0" y2="0">
                 <stop offset="0%" stop-color="#18c8fd"></stop>
@@ -34,13 +35,33 @@
         </div>
       </div>
       #if SHOW_DIAGNOSTICS
-      <img id="diagnostics-icon" src="TemplateData/webmemd-icon.png">
+      <img id="diagnostics-icon" src="https://ik.imagekit.io/bmp6bnlpn/scripts/unity-game-shell/webmemd-icon.png?updatedAt=1755611404565">
       #endif
     </div>
-    <aside id="quick-actions"><a href="https://gamedemos.uroc.com/games/" target="_blank"><img src="https://ik.imagekit.io/bmp6bnlpn/uroc/uroc-logo-primary.svg?updatedAt=1755010956462"></a>
+    <aside id="quick-actions">
+      <label class="toggle" id="toggle_menu" onclick="javascript:void(0)">
+        <input type="checkbox">
+        <svg class="off" xmlns="http://www.w3.org/2000/svg" viewbox="32 56 192 144">
+          <line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+          <line x1="40" y1="64" x2="216" y2="64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+          <line x1="40" y1="192" x2="216" y2="192" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+        </svg>
+        <svg class="on" xmlns="http://www.w3.org/2000/svg" viewbox="48 48 160 160">
+          <rect width="256" height="256" fill="none"></rect>
+          <line x1="200" y1="56" x2="56" y2="200" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+          <line x1="200" y1="200" x2="56" y2="56" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+        </svg>
+      </label>
+      <button class="action" onclick="GameShell.show_dialog_by_id(&quot;game_rules&quot;)">
+        <svg class="symbol" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="24 24 208 208">
+          <circle cx="128" cy="128" r="96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle>
+          <path d="M120,120a8,8,0,0,1,8,8v40a8,8,0,0,0,8,8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
+          <circle cx="124" cy="84" r="12"></circle>
+        </svg>
+      </button>
       <label class="toggle">
         <input id="full_screen_status" type="checkbox" onchange="GameShell.toggle_fullscreen_native()">
-        <svg class="off" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 256 256">
+        <svg class="off" xmlns="http://www.w3.org/2000/svg" viewbox="40 40 176 176">
           <polyline points="160 48 208 48 208 96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
           <line x1="152" y1="104" x2="208" y2="48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
           <polyline points="96 208 48 208 48 160" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
@@ -50,7 +71,7 @@
           <polyline points="48 96 48 48 96 48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
           <line x1="104" y1="104" x2="48" y2="48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
         </svg>
-        <svg class="on" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 256 256">
+        <svg class="on" xmlns="http://www.w3.org/2000/svg" viewbox="40 40 176 176">
           <polyline points="192 104 152 104 152 64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
           <line x1="208" y1="48" x2="152" y2="104" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
           <polyline points="64 152 104 152 104 192" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
@@ -61,61 +82,37 @@
           <line x1="48" y1="48" x2="104" y2="104" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
         </svg>
       </label>
-      <label class="toggle">
-        <input type="checkbox" checked="" onchange="GameShell.toggle_sounds(this)">
-        <svg class="off" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 256 256">
-          <path d="M88,168H40a8,8,0,0,1-8-8V96a8,8,0,0,1,8-8H88l72-56V224Z" fill="rgba(33, 16, 11, 0.18)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
-          <line x1="248" y1="104" x2="200" y2="152" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></line>
-          <line x1="248" y1="152" x2="200" y2="104" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></line>
-        </svg>
-        <svg class="symbol on" xmlns="http://www.w3.org/2000/svg" viewbox="24 24 216 208">
-          <path d="M88,168H40a8,8,0,0,1-8-8V96a8,8,0,0,1,8-8H88l72-56V224Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
-          <line x1="200" y1="104" x2="200" y2="152" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
-          <line x1="232" y1="88" x2="232" y2="168" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
-        </svg>
-      </label>
-      <button class="action" onclick="GameShell.show_dialog_by_id(&quot;game_rules&quot;)">
-        <svg class="symbol" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="24 24 208 208">
-          <circle cx="128" cy="128" r="96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle>
-          <path d="M120,120a8,8,0,0,1,8,8v40a8,8,0,0,0,8,8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
-          <circle cx="124" cy="84" r="12"></circle>
-        </svg>
-      </button>
-      <button class="action disable_on_spin" onclick="GameShell.send_message_to_unity(&quot;settingsMenu&quot;)">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 256 256">
-          <circle cx="128" cy="128" r="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle>
-          <path d="M130.05,206.11c-1.34,0-2.69,0-4,0L94,224a104.61,104.61,0,0,1-34.11-19.2l-.12-36c-.71-1.12-1.38-2.25-2-3.41L25.9,147.24a99.15,99.15,0,0,1,0-38.46l31.84-18.1c.65-1.15,1.32-2.29,2-3.41l.16-36A104.58,104.58,0,0,1,94,32l32,17.89c1.34,0,2.69,0,4,0L162,32a104.61,104.61,0,0,1,34.11,19.2l.12,36c.71,1.12,1.38,2.25,2,3.41l31.85,18.14a99.15,99.15,0,0,1,0,38.46l-31.84,18.1c-.65,1.15-1.32,2.29-2,3.41l-.16,36A104.58,104.58,0,0,1,162,224Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
-        </svg>
-      </button>
-      <label class="toggle" id="toggle_menu" onclick="javascript:void(0)">
-        <input type="checkbox">
-        <svg class="off" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 256 256">
-          <line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
-          <line x1="40" y1="64" x2="216" y2="64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
-          <line x1="40" y1="192" x2="216" y2="192" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
-        </svg>
-        <svg class="on" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 256 256">
-          <rect width="256" height="256" fill="none"></rect>
-          <line x1="200" y1="56" x2="56" y2="200" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
-          <line x1="200" y1="200" x2="56" y2="56" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
-        </svg>
-      </label>
       <div class="sub-menu">
         <div class="sub-menu-inner">
-          <button class="action disable_on_spin" onclick="GameShell.show_dialog_by_id(&quot;bet_levels_modal&quot;)">
-            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 256 256">
-              <ellipse cx="96" cy="84" rx="80" ry="36" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></ellipse>
-              <path d="M16,84v40c0,19.88,35.82,36,80,36s80-16.12,80-36V84" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
-              <line x1="64" y1="117" x2="64" y2="157" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
-              <path d="M176,96.72c36.52,3.34,64,17.86,64,35.28,0,19.88-35.82,36-80,36-19.6,0-37.56-3.17-51.47-8.44" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
-              <path d="M80,159.28V172c0,19.88,35.82,36,80,36s80-16.12,80-36V132" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
-              <line x1="192" y1="165" x2="192" y2="205" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
-              <line x1="128" y1="117" x2="128" y2="205" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+          <button class="action disable_on_spin" onclick="GameShell.send_message_to_unity(&quot;settingsMenu&quot;)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="16.02 24 223.95 208">
+              <circle cx="128" cy="128" r="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle>
+              <path d="M130.05,206.11c-1.34,0-2.69,0-4,0L94,224a104.61,104.61,0,0,1-34.11-19.2l-.12-36c-.71-1.12-1.38-2.25-2-3.41L25.9,147.24a99.15,99.15,0,0,1,0-38.46l31.84-18.1c.65-1.15,1.32-2.29,2-3.41l.16-36A104.58,104.58,0,0,1,94,32l32,17.89c1.34,0,2.69,0,4,0L162,32a104.61,104.61,0,0,1,34.11,19.2l.12,36c.71,1.12,1.38,2.25,2,3.41l31.85,18.14a99.15,99.15,0,0,1,0,38.46l-31.84,18.1c-.65,1.15-1.32,2.29-2,3.41l-.16,36A104.58,104.58,0,0,1,162,224Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
             </svg>
           </button>
-          <button class="action" onclick="GameShell.show_dialog_by_id(&quot;language_modal&quot;)"><img class="flag" src="https://ik.imagekit.io/bmp6bnlpn/flags/en.svg?updatedAt=1755010956462"></button>
+          <label class="toggle">
+            <input type="checkbox" name="toggle_sounds" checked="" onchange="GameShell.toggle_sounds()">
+            <svg class="off" xmlns="http://www.w3.org/2000/svg" viewbox="24 24 230 208">
+              <path d="M88,168H40a8,8,0,0,1-8-8V96a8,8,0,0,1,8-8H88l72-56V224Z" fill="rgba(33, 16, 11, 0.18)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
+              <line x1="248" y1="104" x2="200" y2="152" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></line>
+              <line x1="248" y1="152" x2="200" y2="104" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></line>
+            </svg>
+            <svg class="symbol on" xmlns="http://www.w3.org/2000/svg" viewbox="24 24 216 208">
+              <path d="M88,168H40a8,8,0,0,1-8-8V96a8,8,0,0,1,8-8H88l72-56V224Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
+              <line x1="200" y1="104" x2="200" y2="152" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+              <line x1="232" y1="88" x2="232" y2="168" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+            </svg>
+          </label>
+          <button class="action disable_on_spin" onclick="GameShell.send_message_to_unity(&quot;history&quot;)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="24 32 199.99 192">
+              <polyline points="128 80 128 128 168 152" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
+              <polyline points="72 104 32 104 32 64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
+              <path d="M67.6,192A88,88,0,1,0,65.77,65.77C54,77.69,44.28,88.93,32,104" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
+            </svg>
+          </button>
+          <button class="action" onclick="GameShell.show_dialog_by_id(&quot;language_modal&quot;)"><img class="flag" src="https://ik.imagekit.io/bmp6bnlpn/flags/en.svg?updatedAt=1757074543426"></button>
           <button class="action disable_on_spin" onclick="GameShell.show_dialog_by_id(&quot;quit_modal&quot;)">
-            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 256 256">
+            <svg xmlns="http://www.w3.org/2000/svg" viewbox="40 32 192 192">
               <polyline points="112 40 48 40 48 216 112 216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
               <line x1="112" y1="128" x2="224" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
               <polyline points="184 88 224 128 184 168" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline>
@@ -149,34 +146,34 @@
             <div class="grid paytable"></div>
             <div class="symbol-explainer">
               <div class="row">
-                <div><img class="symbol" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/symbols/symbol-WC.webp?updatedAt=1755010956462"></div>
+                <div><img class="symbol" data-symbol="WC"></div>
                 <div>Wild Symbol</div>
               </div>
               <div>
-                <p>WILD appear on all reels<br>WILD substitutes for all symbols except DOLPHIN and GOLD DOLPHIN symbols</p>
+                <p>WILD appear on all reels<br>WILD substitutes for all symbols except COIN and GOLD COIN symbols</p>
               </div>
             </div>
             <div class="symbol-explainer">
               <div class="row">
-                <div><img class="symbol" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/symbols/symbol-COIN.png?updatedAt=1755010956462"></div>
-                <div>DOLPHIN COIN SYMBOL</div>
+                <div><img class="symbol" data-symbol="COIN"></div>
+                <div>COIN SYMBOL</div>
               </div>
               <div>
-                <p>DOLPHIN Symbol appear on all reels<br>DOLPHIN COIN substitutes all symbols except GOLD DOLPHIN symbol</p>
+                <p>COIN Symbol appear on all reels<br>COIN substitutes all symbols except GOLD COIN symbol</p>
               </div>
             </div>
             <div class="symbol-explainer">
               <div class="row">
-                <div><img class="symbol" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/symbols/symbol-GOLD_COIN.png?updatedAt=1755010956462"></div>
-                <div>GOLD DOLPHIN SYMBOL</div>
+                <div><img class="symbol" data-symbol="GOLD_COIN"></div>
+                <div>GOLD COIN SYMBOL</div>
               </div>
               <div>
-                <p>GOLD DOLPHIN Symbol appear on all reels<br>GOLD DOLPHIN Symbol substitutes for all symbols except DOLPHIN symbol<br>GOLD DOLPHIN Symbols may land with a value between 5x and 9x of the total Play amount</p>
+                <p>GOLD COIN Symbol appear on all reels<br>GOLD COIN Symbol substitutes for all symbols except COIN symbol<br>GOLD COIN Symbols may land with a value between 5x and 9x of the total Play amount</p>
               </div>
             </div>
             <div class="symbol-explainer">
               <div class="row">
-                <div><img class="symbol" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/symbols/symbol-MYSTERY.webp?updatedAt=1755010956462"></div>
+                <div><img class="symbol" data-symbol="MYSTERY"></div>
                 <div>MYSTERY SYMBOL</div>
               </div>
               <div>
@@ -191,7 +188,7 @@
             <p>The remaining positions will be vacant for other symbols to land during the bonus game.</p>
             <p>At the start of the bonus, the player is awarded 3 re-spins. During the re-spins, if any symbol lands on a vacant position, the re-spin count resets to 3.</p>
             <p>The bonus ends when all re-spins are used up or all vacant positions on the game board are filled.</p><br>
-            <h3 class="color-secondary">MYSTERY BOX</h3><img class="symbol" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/symbols/symbol-MYSTERY.webp?updatedAt=1755010956462">
+            <h3 class="color-secondary">MYSTERY BOX</h3><img class="symbol" data-symbol="MYSTERY">
             <p>MYSTERY BOX award random prizes like multipliers, Jackpots or The Vortex.</p><br>
             <h3 class="color-secondary">MULTIPLIER FEATURE</h3>
             <p>A Mystery Box can award a multiplier between 1x and 9x of the Play amount that triggered the Hold For Gold feature.</p><br>
@@ -203,9 +200,8 @@
             <p>The Mystery Box may award the VORTEX feature, which collects and awards the total value of all coin symbols on the board.</p>
           </section><br>
           <section>
-            <!--LOCALIZATION h2(class="color-secondary") Paylines-->
             <h2 class="color-secondary">Lines</h2>
-            <p>All wins award left to right on adjacent reels. Winning combinations begin with the leftmost reel. Only highest win awarded per line.</p><img style="width: min(1024px, 100%)" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/paylines.svg?updatedAt=1755010956462">
+            <p>All wins award left to right on adjacent reels. Winning combinations begin with the leftmost reel. Only highest win awarded per line.</p><img style="width: min(1024px, 100%)" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/paylines.svg?updatedAt=1757074543426">
           </section><br>
           <section>
             <h2 class="color-secondary">PLAY FEATURE</h2>
@@ -229,10 +225,10 @@
           </section><br>
           <section class="how-to-play">
             <h2 class="color-secondary">HOW TO PLAY</h2>
-            <div class="row"><img class="symbol" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/icon-bet.png?updatedAt=1755010956462">
+            <div class="row"><img class="symbol" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/icon-bet.png?updatedAt=1757074543426">
               <p>Opens the Play amount menu. Select the amount you want to use in the game.</p>
             </div>
-            <div class="row"><img class="symbol" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/icon-autoplay.png?updatedAt=1755010956462">
+            <div class="row"><img class="symbol" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/icon-autoplay.png?updatedAt=1757074543426">
               <p>Opens the auto play menu.</p>
             </div>
             <div class="row">
@@ -243,10 +239,10 @@
               </svg>
               <p>Opens the game rules page.</p>
             </div>
-            <div class="row"><img class="symbol" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/icon-spin.png?updatedAt=1755010956462">
+            <div class="row"><img class="symbol" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/icon-spin.png?updatedAt=1757074543426">
               <p>Starts the game play.</p>
             </div>
-            <div class="row"><img class="symbol" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/icon-stop.png?updatedAt=1755010956462">
+            <div class="row"><img class="symbol" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/icon-stop.png?updatedAt=1757074543426">
               <p>Slam stops the current spin.</p>
             </div>
             <div class="row">
@@ -257,7 +253,7 @@
               </svg>
               <p>Toggle sound ON/OFF.</p>
             </div>
-            <div class="row"><img class="symbol" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/icon-turbo.png?updatedAt=1755010956462">
+            <div class="row"><img class="symbol" src="https://ik.imagekit.io/bmp6bnlpn/games/miami_blaze/icon-turbo.png?updatedAt=1757074543426">
               <p>Select between Normal, Fast, and Ultra Spin modes.</p>
             </div>
             <div style="margin: 2.5em 0">
@@ -289,7 +285,7 @@
       <header>CHOOSE YOUR LANGUAGE</header>
       <div class="content">
         <div class="column center-center">
-          <button class="nav-previous" onclick="GameShell.previous_language()">❮</button><img class="flag" src="https://ik.imagekit.io/bmp6bnlpn/flags/en.svg?updatedAt=1755010956462">
+          <button class="nav-previous" onclick="GameShell.previous_language()">❮</button><img class="flag" src="https://ik.imagekit.io/bmp6bnlpn/flags/en.svg?updatedAt=1757074543426">
           <button class="nav-next" onclick="GameShell.next_language()">❯</button>
         </div>
       </div>
@@ -334,10 +330,14 @@
       <div class="phone"></div>
       <p>Please rotate your device</p>
     </div>
-    <label class="unity-product-version" style="position: fixed;bottom: 0;left: 0;pointer-events: none;color: gray;font-size: 14px;padding: 10px">{{{ PRODUCT_VERSION }}}</label>
+    <label class="unity-product-version" style="position: fixed;bottom: 0;left: 0;pointer-events: none;color: gray;font-size: 14px;padding:10px;z-index:-1">{{{ PRODUCT_VERSION }}}</label>
     <script>
       var canvas = document.querySelector('#unity-canvas');
       function unityShowBanner(msg, type) {
+          if(type === 'warning'){
+              console.warn(msg);
+              return;
+          }
           GameShell.show_error_popup(msg);
       }
       var buildUrl = 'Build';
