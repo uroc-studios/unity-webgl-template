@@ -6,9 +6,9 @@ Remove existing WebGL Template installation:
 git rm -r 'Assets/WebGLTemplates/UROC'
 ```
 
-Update your `.gitignore`
-```shell
-echo '/[Aa]ssets/WebGLTemplates/UROC' >> .gitignore
+Add this line to `.gitignore`
+```gitignore
+/[Aa]ssets/WebGLTemplates/UROC"
 ```
 
 Install this package in Package Manager by using the "Install package from git URL" option
