@@ -1,6 +1,6 @@
 {
   "name": "com.uroc.webgl-template",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "displayName": "WebGL Template",
   "description": "WebGL template for our games",
   "unity": "6.0",
