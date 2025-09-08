@@ -4,6 +4,7 @@
 Remove existing WebGL Template installation:
 ```shell
 git rm -r 'Assets/WebGLTemplates/UROC'
+git rm 'Assets/WebGLTemplates/UROC.meta'
 ```
 
 Add this line to `.gitignore`
