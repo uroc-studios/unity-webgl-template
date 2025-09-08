@@ -9,6 +9,7 @@ git rm -r 'Assets/WebGLTemplates/UROC'
 Add this line to `.gitignore`
 ```gitignore
 /[Aa]ssets/WebGLTemplates/UROC"
+/[Aa]ssets/WebGLTemplates/UROC.meta"
 ```
 
 Install this package in Package Manager by using the "Install package from git URL" option
