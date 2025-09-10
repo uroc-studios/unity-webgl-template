@@ -1,0 +1,52 @@
+name: 'Version Bumper'
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  version_bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: '${{ github.token }}'
+          fetch-depth: '0'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+
+      - name: Configure Git user
+        # Git needs to know the user's identity to create a commit
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+
+      - name: Get current version
+        # Get the current version from the package.json file and save it to a variable
+        id: get_version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "current_version=${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Increment version and push
+        run: |
+          # Use npm version to automatically increment the patch version.
+          # You can change 'patch' to 'minor', 'major', 'prepatch', etc.
+          # The -m flag adds a commit message with the new version number.
+          npm version patch -m "version bump to %s"
+
+      - name: Push new commit and tag
+        uses: actions/github-script@v6
+        with:
+          github-token: '${{ github.token }}'
+          script: |
+            const { execSync } = require('child_process');
+            execSync('git push');
+            execSync('git push --tags');
