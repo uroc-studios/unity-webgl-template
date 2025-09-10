@@ -2,7 +2,7 @@ name: 'Version Bumper'
 on:
   push:
     branches:
-      - feature/copy-change
+      - main
 
 permissions:
   contents: write
