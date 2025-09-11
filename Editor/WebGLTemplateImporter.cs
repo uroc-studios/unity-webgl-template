@@ -81,9 +81,9 @@ public static class WebGLTemplateImporter
         Log("OnInstall");
         var sourcePath = Path.Combine(package.assetPath, "Template");
 // Guard Clause: Ensure the source template actually exists before we do anything.
-    if (!Directory.Exists(source_path))
+    if (!Directory.Exists(sourcePath))
     {
-        Log($"Source template not found at '{source_path}'. Aborting installation.");
+        Log($"Source template not found at '{sourcePath}'. Aborting installation.");
         return;
     }
 
