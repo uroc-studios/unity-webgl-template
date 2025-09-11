@@ -82,8 +82,7 @@ public static class WebGLTemplateImporter
         ClearOutputDirectory();
         Directory.CreateDirectory(target_path);
         var sourcePath = Path.Combine(package.assetPath, "Template");
-        FileUtil.CopyFileOrDirectory($"{sourcePath}/index.html", $"{target_path}/index.html");
-        FileUtil.CopyFileOrDirectory($"{sourcePath}/thumbnail.png", $"{target_path}/thumbnail.png");
+		FileUtil.CopyFileOrDirectory(sourcePath, targetPath);
         AssetDatabase.Refresh();
         Log($"Successfully copied files to {target_path}");
     }
