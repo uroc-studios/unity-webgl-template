@@ -1,10 +1,7 @@
-using System;
 using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 
 [InitializeOnLoad]
 public static class WebGLTemplateImporter
@@ -15,27 +12,65 @@ public static class WebGLTemplateImporter
     static WebGLTemplateImporter()
     {
         Log("Registering Package Event Listeners");
-        // Events.registeringPackages += OnRegisteringPackages;
         Events.registeredPackages += OnPackagesRegistered;
+        Events.registeringPackages += OnRegisteringPackages;
     }
 
     private static void Log(string message)
     {
-        
         Debug.Log($"[WebGLTemplateImporter] {message}");
     }
     
     private static void OnPackagesRegistered(PackageRegistrationEventArgs args)
     {
+        Log($"OnPackagesRegistered");
+
         foreach (var package in args.added){
-            // Log($"Added package: {package.name} ({package.version})");
+            Log($"[OnPackagesRegistered] Added package: {package.name} ({package.version})");
             if(package.name == package_name){
                 OnInstall(package);
             }
         }
 
         foreach (var package in args.removed){
-            // Log($"Removed package: {package.name}");
+            Log($"[OnPackagesRegistered] Removed package: {package.name} ({package.version})");
+            if(package.name == package_name){
+                OnUninstall();
+            }
+        }
+
+        foreach (var package in args.changedFrom){
+            Log($"[OnPackagesRegistered] Changed from package: {package.name} ({package.version})");
+        }
+
+        foreach (var package in args.changedTo){
+            Log($"[OnPackagesRegistered] Changed to package: {package.name} ({package.version})");
+            if(package.name == package_name){
+                OnInstall(package);
+            }
+        }
+    }
+
+    private static void OnRegisteringPackages(PackageRegistrationEventArgs args)
+    {
+        Log($"OnRegisteringPackages");
+        foreach (var package in args.added){
+            Log($"[OnRegisteringPackages] Added package: {package.name} ({package.version})");
+        }
+
+        foreach (var package in args.changedFrom){
+            Log($"[OnRegisteringPackages] Changed from package: {package.name} ({package.version})");
+        }
+
+        foreach (var package in args.changedTo){
+            Log($"[OnRegisteringPackages] Changed to package: {package.name} ({package.version})");
+            if(package.name == package_name){
+                OnInstall(package);
+            }
+        }
+
+        foreach (var package in args.removed){
+            Log($"[OnRegisteringPackages] Removed package: {package.name} ({package.version})");
             if(package.name == package_name){
                 OnUninstall();
             }
@@ -63,6 +98,7 @@ public static class WebGLTemplateImporter
         }
 
         Log($"Deleting Existing Directory: {target_path}");
+        File.Delete($"{target_path}.meta");
         Directory.Delete(target_path, true);
         AssetDatabase.Refresh();
     }
@@ -72,34 +108,5 @@ public static class WebGLTemplateImporter
         Log("OnUninstall");
         ClearOutputDirectory();
     }
-    
-    // private static void OnRegisteringPackages(PackageRegistrationEventArgs args)
-    // {
-    //     Debug.Log("OnRegisteringPackages called");
-    //     // Guard Clause: No changes, so do nothing.
-    //     if (args.added.Count == 0 && args.removed.Count == 0) return;
-    //
-    //     // Handle package removal before the package is uninstalled
-    //     var removedPackage = args.removed.FirstOrDefault(p => p.name == package_name);
-    //     if (removedPackage != null)
-    //     {
-    //         Debug.Log($"Removing {package_name}. Deleting copied files from {target_path}");
-    //         
-    //         // Guard Clause: Don't try to delete if the directory doesn't exist.
-    //         if (!Directory.Exists(target_path)) return;
-    //
-    //         Directory.Delete(target_path, true);
-    //         AssetDatabase.Refresh();
-    //         Debug.Log($"Successfully deleted folder at {target_path}");
-    //         return; // Exit as the purpose was removal
-    //     }
-    //
-    //     // Handle package installation or update
-    //     var addedPackage = args.added.FirstOrDefault(p => p.name == package_name);
-    //     if (addedPackage != null)
-    //     {
-    //         OnInstall(addedPackage);
-    //     }
-    // }
     
 }
