@@ -79,9 +79,15 @@ public static class WebGLTemplateImporter
 
     private static void OnInstall(UnityEditor.PackageManager.PackageInfo package){
         Log("OnInstall");
-        ClearOutputDirectory();
-        Directory.CreateDirectory(target_path);
         var sourcePath = Path.Combine(package.assetPath, "Template");
+// Guard Clause: Ensure the source template actually exists before we do anything.
+    if (!Directory.Exists(source_path))
+    {
+        Log($"Source template not found at '{source_path}'. Aborting installation.");
+        return;
+    }
+
+        ClearOutputDirectory();
 		FileUtil.CopyFileOrDirectory(sourcePath, target_path);
         AssetDatabase.Refresh();
         Log($"Successfully copied files to {target_path}");
@@ -97,8 +103,7 @@ public static class WebGLTemplateImporter
         }
 
         Log($"Deleting Existing Directory: {target_path}");
-        File.Delete($"{target_path}.meta");
-        Directory.Delete(target_path, true);
+        FileUtil.DeleteFileOrDirectory(target_path);
         AssetDatabase.Refresh();
     }
 
