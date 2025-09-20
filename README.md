@@ -18,3 +18,8 @@ Install this package in Package Manager by using the "Install package from git U
 ```
 https://git.internal.uroc.co/uroc-studios/unity-webgl-template.git
 ```
+
+
+---
+
+<img src="https://raw.githubusercontent.com/uroc-studios/unity-webgl-template/main/how_to_update.png">
